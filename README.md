@@ -1,4 +1,4 @@
-# tmux-fzf-url
+## tmux-fzf-url
 
 Fork of [wfxr/tmux-fzf-url](https://github.com/wfxr/tmux-fzf-url).
 
@@ -6,8 +6,8 @@ Fork of [wfxr/tmux-fzf-url](https://github.com/wfxr/tmux-fzf-url).
 
 Add this line to your tmux config file, then hit `prefix + I`:
 
-``` tmux
-set -g @plugin 'junegunn/tmux-fzf-url'
+```tmux
+set -g @plugin 'xltan/tmux-fzf-url'
 ```
 
 ### Usage
