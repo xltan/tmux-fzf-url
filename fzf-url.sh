@@ -37,7 +37,7 @@ ips=($(echo "$content" |grep -oE '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}
 # gits=($(echo "$content" |grep -oE '(ssh://)?git@\S*' | sed 's/:/\//g' | sed 's/^\(ssh\/\/\/\)\{0,1\}git@\(.*\)$/https:\/\/\2/'))
 
 if [[ $# -ge 1 && "$1" != '' ]]; then
-    mapfile -t extras < <(echo "$content" |eval "$1")
+    extras=($(echo "$content" |eval "$1"))
 fi
 
 # items=$(printf '%s\n' "${urls[@]}" "${wwws[@]}" "${ips[@]}" "${gits[@]}" "${extras[@]}" |
@@ -48,7 +48,7 @@ items=$(printf '%s\n' "${urls[@]}" "${wwws[@]}" "${ips[@]}" "${extras[@]}" |
 )
 [ -z "$items" ] && tmux display 'tmux-fzf-url: no URLs found' && exit
 
-mapfile -t chosen < <(fzf_filter <<< "$items" | awk '{print $2}')
+chosen=($(fzf_filter <<< "$items" | awk '{print $2}'))
 
 for item in "${chosen[@]}"; do
     open_url "$item" &>"/tmp/tmux-$(id -u)-fzf-url.log"
